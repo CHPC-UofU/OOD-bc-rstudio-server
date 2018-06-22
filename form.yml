@@ -1,0 +1,48 @@
+---
+cluster: "scrubpeak"
+attributes:
+  num_cores:
+    widget: "number_field"
+    label: "Number of cores"
+    value: 1
+    help: |
+      Number of cores on node type (4 GB per core unless requesting whole
+      node). Leave blank if requesting full node.
+    min: 1
+    max: 8
+    step: 1
+  bc_account:
+    label: "Account"
+    help: "If left blank default account will be used"
+  bc_queue:
+    label: "Partition"
+    value: "scrubpeak"
+    help: "If left blank default partition will be used"
+  node_type:
+    widget: select
+    label: "Node type"
+    help: |
+      - **any** - Chooses anyone of the available Lonepeak nodes.
+        This reduces the wait time as you have no requirements.
+      - **8 core node** - Chooses 8 core Lonepeak nodes.
+      - **12 core node** - Chooses 12 core Lonepeak nodes.
+      - **20 core node** - Chooses 20 core Lonepeak nodes.
+    options:
+      - ["any node", "any"]
+      - ["8 core node", "c8"]
+      - ["12 core node", "c12"]
+      - ["20 core node", "c20"]
+  version:
+    widget: select
+    label: "R version"
+    help: "This defines the version of R you want to load."
+    options:
+      - [ "3.4.4", "gcc R/3.4.4 rstudio/1.1.453_server"]
+form:
+  - version
+  - bc_account
+  - bc_queue
+  - bc_num_hours
+  - node_type
+  - num_cores
+  - bc_email_on_started
